@@ -8,14 +8,14 @@ To start using signito-client Java API just include these Maven dependencies int
 
 ```
 <dependency>
-	<groupId>sk.annotation.projects.signito</groupId>
+    <groupId>sk.annotation.projects.signito</groupId>
     <artifactId>signito-client</artifactId>
     <classifier>minimal</classifier>
     <version>LATEST VERSION FROM MAVEN CENTRAL</version>
 </dependency>
 
 <dependency>
-	<groupId>com.fasterxml.jackson.core</groupId>
+    <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-databind</artifactId>
     <version>2.13.2.2</version>
 </dependency>
