@@ -39,9 +39,8 @@ public class Example_1_Basic {
         //configure signatures
         SignerGroupId signersGroup = groupBuilder.addSignerGroup(null, null);
         groupBuilder.addSignerRule(signersGroup, doc, signer1, SignFieldConfigDTO.createSignature("signature_1", true),
-                new SignFieldConfigDTO[]{
-                        SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true, "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum")
-                }, null);
+                SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true,
+                        "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum"));
 
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();

@@ -48,8 +48,8 @@ public class Example_3_TechnicalSign {
         SignerGroupId g = groupBuilder.addSignerGroup(null, null);
 
         //configure signature rules for document 1
-        groupBuilder.addSignerRule(g, d1, signer1, SignFieldConfigDTO.createSignature("signature_1", true), new SignFieldConfigDTO[0], null);
-        groupBuilder.addSignerRule(g, d1, signer2, SignFieldConfigDTO.createSignature("signature_2", true), new SignFieldConfigDTO[0], null);
+        groupBuilder.addSignerRule(g, d1, signer1, SignFieldConfigDTO.createSignature("signature_1", true));
+        groupBuilder.addSignerRule(g, d1, signer2, SignFieldConfigDTO.createSignature("signature_2", true));
         groupBuilder.addSignerRule(g, d1, signerTechnical, SignFieldConfigDTO.createSignature("signature_3", true), new SignFieldConfigDTO[0], signRuleDTO -> {
             SignConfigDataDTO signConfigDataDTO = new SignConfigDataDTO();
             signConfigDataDTO.setSignatureTemplateId(ExampleUtils.resolveFascimilePath(signitoClient));
@@ -59,23 +59,10 @@ public class Example_3_TechnicalSign {
 
         //configure signature rules for document 2
         groupBuilder.addSignerRule(g, d2, signer1, SignFieldConfigDTO.createSignature("signature_4", true),
-                new SignFieldConfigDTO[]{
-                        SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true, "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum")
-                }, null);
+                        SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true,
+                                "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum")
+                );
 
-
-    /*DocumentNotifyDestinationsDTO notif = groupBuilder.getNotificationConfigSigned();
-    notif.setCreatorByEmail(true);
-    notif.setCustomEmails(Map.of("custom-email@daco.sk", "My Custom Destination"));
-    notif.setCustomLink(List.of(
-      NotifyCustomLinkDTO.createGet("http://127.0.0.1:8192/"),
-      NotifyCustomLinkDTO.create(
-        "http://127.0.0.1:8193/daco?",
-        MethodTypesEnum.POST,
-        Set.of(SignitoOnEvents.values()),
-        Map.of("CUSTOM_HEADER", List.of("CUSTOM_VALUE1"))
-      )
-    ));*/
 
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();
@@ -88,10 +75,12 @@ public class Example_3_TechnicalSign {
             ruleGroup.getRules().stream()
                     .filter(r -> Objects.equals(r.getSignerId(), signerTechnical.getSignerId()))
                     .forEach(rule -> {
+
                         SigningProcessResultDTO r = signitoClient.signManually(detailDTO.getDocGroupId(), rule, null);
                         if (Boolean.FALSE.equals(r.getSuccess())) {
                             throw new RuntimeException("technical signing error: " + r.getError().getMessage());
                         }
+
                     });
         });
 

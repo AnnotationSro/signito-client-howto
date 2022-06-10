@@ -41,10 +41,8 @@ public class Example_2_MultipleDoc {
 
         //configure signatures
         SignerGroupId signersGroup = groupBuilder.addSignerGroup(null, null);
-        groupBuilder.addSignerRule(signersGroup, doc1, signer1, SignFieldConfigDTO.createSignature("signature_1", true),
-                new SignFieldConfigDTO[0], null);
-        groupBuilder.addSignerRule(signersGroup, doc2, signer2, SignFieldConfigDTO.createSignature("signature_2", true),
-                new SignFieldConfigDTO[0], null);
+        groupBuilder.addSignerRule(signersGroup, doc1, signer1, SignFieldConfigDTO.createSignature("signature_1", true));
+        groupBuilder.addSignerRule(signersGroup, doc2, signer2, SignFieldConfigDTO.createSignature("signature_2", true));
 
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();

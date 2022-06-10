@@ -33,13 +33,16 @@ public class ExampleUtils {
                 new SignerDTOBuilder("Jurko Mlady", "jurko.mlady@email.sk", "+421901234567")
                         .withNotifyByEmail(false)
                         .withNotifyBySms(false)
+                        .withSendFinalEmail(false)
                         .build()
         );
+
         if (signersCount>1) {
             signer2 = groupBuilder.registerSigner("sign2",
                     new SignerDTOBuilder("Janko Stary", "janko.stary@email.sk", "+421901234568")
                             .withNotifyByEmail(false)
                             .withNotifyBySms(false)
+                            .withSendFinalEmail(false)
                             .build()
             );
         }
@@ -48,6 +51,7 @@ public class ExampleUtils {
                     new SignerDTOBuilder("Technical signer", "technical@email.sk", null)
                             .withNotifyByEmail(false)
                             .withNotifyBySms(false)
+                            .withSendFinalEmail(false)
                             .build()
             );
         }
@@ -75,11 +79,15 @@ public class ExampleUtils {
     }
 
     public static UploadedDocumentId addDocumentWith1signature1text(SignitoDocumentRequestBuilder groupBuilder, String signatureCode, String textFieldCode) {
+
+
         UploadedDocumentId d2 = groupBuilder.uploadDocumentAsInputStream("filename2.pdf", createDummyInputStream(2), "This is document 2",
-                Map.of(signatureCode,
+                Map.of(
+                        signatureCode,
                         DocumentFieldConfigDTO.create(DocumentFieldTypeEnum.SIGNATURE, 317.63702, 642.282, 140.0, 35.0, 1, true),
-                // DocumentFieldConfigDTO.createRelativeToText
-                        textFieldCode, DocumentFieldConfigDTO.create(DocumentFieldTypeEnum.TEXT, 100.0, 642.282, 200.0, 35.0, 1, true)
+//                        DocumentFieldConfigDTO.createRelativeToText(DocumentFieldTypeEnum.SIGNATURE, "text_to_replace", 0,0,100,100,1, true),
+                        textFieldCode,
+                        DocumentFieldConfigDTO.create(DocumentFieldTypeEnum.TEXT, 100.0, 642.282, 200.0, 35.0, 1, true)
                                 .withDefaultText("This is default text"))
                 , (config) -> {
             config.setStrictVisibility(true); //visible only for signers
@@ -87,6 +95,8 @@ public class ExampleUtils {
         });
         return d2;
     }
+
+    //DocumentFieldConfigDTO.createRelativeToText(DocumentFieldTypeEnum.SIGNATURE, "ahoj", 0,0,100,100,1, true),
 
     public static UploadedDocumentId addDocumentWith1signature(SignitoDocumentRequestBuilder groupBuilder, String signatureCode) {
         UploadedDocumentId d2 = groupBuilder.uploadDocumentAsInputStream("filename4.pdf", createDummyInputStream(2), "This is document 4",
@@ -117,7 +127,7 @@ public class ExampleUtils {
             File faksFile = new File(ExampleUtils.class.getResource("/signatures/fascimile.png").toURI());
             InputStream is = new FileInputStream(faksFile);
 
-            //create unique key - it chan be hash, UUID or something like this:
+            //create unique key - it chan be file hash, UUID or something like this:
             String key = "fascimile_" + faksFile.getAbsolutePath().replaceAll("[^a-zA-Z0-9_-]+", "");
             try {
                 int v = is.available();

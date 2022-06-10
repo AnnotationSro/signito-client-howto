@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * programmatically checking signature state
  */
 public class Example_4_Notifications_pull {
-   /* public static void main(String[] args) {
+    public static void main(String[] args) {
         new Example_4_Notifications_pull();
     }
 
@@ -52,5 +52,5 @@ public class Example_4_Notifications_pull {
         } else {
             System.out.println("No new new signed documents");
         }
-    }*/
+    }
 }
