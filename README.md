@@ -33,7 +33,7 @@ To start using signito-client Java API just include these Maven dependencies int
 </dependency>
 ```
 
-Examples of how to use Java API you just importend, please refer to [sample Maven project](java_sample_client/) in this repository that contains several examples for: 
+Examples of how to use Java API you just importend, please refer to [sample Maven project](java-sample-client/) in this repository that contains several examples for: 
 - creating new document to sign (basic scenario with one signature and one document, to more complex examples)
 - checking whether document is signed (either by webhook or by pull-method)
 - downloading signed documents & signature protocol
