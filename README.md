@@ -1,6 +1,7 @@
 ## Signito Java client - usage guide
 
 This repository contains HowTos and usage examples for [Signito](https://www.signito.sk/en/home/) signing solution.
+Make sure this repository is switched to [appropriate tag](https://github.com/AnnotationSro/signito-client-howto/tags) - based on `signito-client` version you are using.
 
 ### Basic usage
 
