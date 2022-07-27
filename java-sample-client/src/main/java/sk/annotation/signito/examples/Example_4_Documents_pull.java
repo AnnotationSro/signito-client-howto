@@ -1,34 +1,23 @@
 package sk.annotation.signito.examples;
 
 import sk.annotation.projects.signito.client.SignitoClient;
-import sk.annotation.projects.signito.client.SignitoDocumentRequestBuilder;
-import sk.annotation.projects.signito.client.ids.SignerGroupId;
-import sk.annotation.projects.signito.client.ids.SignerId;
-import sk.annotation.projects.signito.client.ids.UploadedDocumentId;
 import sk.annotation.projects.signito.common.enums.DocumentStatusEnum;
-import sk.annotation.projects.signito.common.enums.FieldRequiredValueType;
-import sk.annotation.projects.signito.common.enums.MethodTypesEnum;
-import sk.annotation.projects.signito.common.enums.SignitoOnEvents;
 import sk.annotation.projects.signito.data.dto.documents.group.*;
-import sk.annotation.projects.signito.data.dto.signing.SignFieldConfigDTO;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
  * programmatically checking signature state
  */
-public class Example_4_Notifications_pull {
+public class Example_4_Documents_pull {
     public static void main(String[] args) {
-        new Example_4_Notifications_pull();
+        new Example_4_Documents_pull();
     }
 
-    public Example_4_Notifications_pull() {
+    public Example_4_Documents_pull() {
         SignitoClient signitoClient = ExampleUtils.createSignitoClient();
 
         checkDocumentStatus(signitoClient);
