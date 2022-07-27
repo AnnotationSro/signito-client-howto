@@ -45,7 +45,7 @@ public class Example_4_Notifications_pull {
         filter.setStatus(List.of(DocumentStatusEnum.DONE));
         filter.setLastModifiedFrom(lastChecked);
 
-        List<DocumentGroupListDTO> result = signitoClient.findNotifications(filter);
+        List<DocumentGroupListDTO> result = signitoClient.findDocumentGroups(filter);
 
         if (result.size() > 0){
             System.out.println("There are some new signed documents: " + result.stream().map(DocumentGroupListDTO::getDocGroupId).collect(Collectors.joining()));
