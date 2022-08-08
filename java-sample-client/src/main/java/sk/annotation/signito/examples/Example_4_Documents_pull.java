@@ -1,11 +1,15 @@
 package sk.annotation.signito.examples;
 
 import sk.annotation.projects.signito.client.SignitoClient;
-import sk.annotation.projects.signito.common.enums.DocumentStatusEnum;
+import sk.annotation.projects.signito.data.dto.api.MetaPaginator;
+import sk.annotation.projects.signito.data.dto.api.RequestFilterDTO;
+import sk.annotation.projects.signito.data.dto.api.ResponseRowsDTO;
 import sk.annotation.projects.signito.data.dto.documents.group.*;
+import sk.annotation.projects.signito.data.enums.DocumentStatusEnum;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,14 +34,14 @@ public class Example_4_Documents_pull {
         //--------------------
 
 
-        DocumentGroupFilterDTO filter = new DocumentGroupFilterDTO();
-        filter.setStatus(List.of(DocumentStatusEnum.DONE));
-        filter.setLastModifiedFrom(lastChecked);
+        DocumentGroupFilterDTO filterDTO = new DocumentGroupFilterDTO();
+        filterDTO.setStatus(List.of(DocumentStatusEnum.DONE));
+        filterDTO.setLastModifiedFrom(ZonedDateTime.from(lastChecked));
 
-        List<DocumentGroupListDTO> result = signitoClient.findDocumentGroups(filter);
+        ResponseRowsDTO<DocumentGroupFilterDTO, DocumentGroupListDTO> result = signitoClient.searchDocumentGroups(filterDTO);
 
-        if (result.size() > 0){
-            System.out.println("There are some new signed documents: " + result.stream().map(DocumentGroupListDTO::getDocGroupId).collect(Collectors.joining()));
+        if (result.getRows().size() > 0){
+            System.out.println("There are some new signed documents: " + result.getRows().stream().map(DocumentGroupListDTO::getDocGroupId).collect(Collectors.joining()));
         } else {
             System.out.println("No new new signed documents");
         }

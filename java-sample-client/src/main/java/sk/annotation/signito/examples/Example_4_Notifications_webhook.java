@@ -5,13 +5,13 @@ import sk.annotation.projects.signito.client.SignitoDocumentRequestBuilder;
 import sk.annotation.projects.signito.client.ids.SignerGroupId;
 import sk.annotation.projects.signito.client.ids.SignerId;
 import sk.annotation.projects.signito.client.ids.UploadedDocumentId;
-import sk.annotation.projects.signito.common.enums.FieldRequiredValueType;
-import sk.annotation.projects.signito.common.enums.MethodTypesEnum;
-import sk.annotation.projects.signito.common.enums.SignitoOnEvents;
 import sk.annotation.projects.signito.data.dto.documents.group.DocumentGroupDetailDTO;
 import sk.annotation.projects.signito.data.dto.documents.group.DocumentNotifyDestinationsDTO;
 import sk.annotation.projects.signito.data.dto.documents.group.NotifyCustomLinkDTO;
 import sk.annotation.projects.signito.data.dto.signing.SignFieldConfigDTO;
+import sk.annotation.projects.signito.data.enums.FieldRequiredValueType;
+import sk.annotation.projects.signito.data.enums.MethodTypesEnum;
+import sk.annotation.projects.signito.data.enums.SignitoOnEvents;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
 import java.util.Date;

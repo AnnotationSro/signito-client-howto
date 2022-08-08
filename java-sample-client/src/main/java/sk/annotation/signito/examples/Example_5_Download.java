@@ -1,9 +1,9 @@
 package sk.annotation.signito.examples;
 
 import sk.annotation.projects.signito.client.SignitoClient;
-import sk.annotation.projects.signito.common.enums.DocumentItemTypeEnum;
-import sk.annotation.projects.signito.common.enums.DocumentStatusEnum;
 import sk.annotation.projects.signito.data.dto.documents.group.DocumentGroupDetailDTO;
+import sk.annotation.projects.signito.data.enums.DocumentItemTypeEnum;
+import sk.annotation.projects.signito.data.enums.DocumentStatusEnum;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
 import java.nio.file.Path;

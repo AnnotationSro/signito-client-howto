@@ -5,10 +5,11 @@ import sk.annotation.projects.signito.client.SignitoDocumentRequestBuilder;
 import sk.annotation.projects.signito.client.SignitoSignatureTemplateBuilder;
 import sk.annotation.projects.signito.client.ids.SignerId;
 import sk.annotation.projects.signito.client.ids.UploadedDocumentId;
-import sk.annotation.projects.signito.common.enums.DocumentAttachmentConfigEnum;
-import sk.annotation.projects.signito.common.enums.DocumentFieldTypeEnum;
 import sk.annotation.projects.signito.data.dto.documents.DocumentFieldConfigDTO;
 import sk.annotation.projects.signito.data.dto.signing.SignerDTOBuilder;
+import sk.annotation.projects.signito.data.enums.DocumentAttachmentConfigEnum;
+import sk.annotation.projects.signito.data.enums.DocumentFieldTypeEnum;
+import sk.annotation.projects.signito.utils.HttpCallbacks;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -17,11 +18,15 @@ import java.util.Set;
 
 public class ExampleUtils {
 
-    public static SignitoClient createSignitoClient() {
+    public static SignitoClient createSignitoClient(HttpCallbacks httpCallbacks) {
         String url = "http://localhost:4208";
         String user = "test@signito.sk";
         String pass = "test";
-        return new SignitoClient(url, user, pass);
+        return new SignitoClient(url, user, pass, httpCallbacks);
+    }
+
+    public static SignitoClient createSignitoClient() {
+        return createSignitoClient(null);
     }
 
     public static SignerId[] addSigners(SignitoDocumentRequestBuilder groupBuilder, int signersCount) {
