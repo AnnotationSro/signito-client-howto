@@ -26,17 +26,17 @@ public class Example_6_HttpCallbacks {
     public Example_6_HttpCallbacks() {
         HttpCallbacks httpCallbacks = new HttpCallbacks() {
             @Override
-            public void beforeRequest(HttpRequest httpRequest, Instant instant) {
-                System.out.println("before request " + httpRequest.getUrl() + " at " + instant.toString());
+            public void beforeRequest(HttpRequest httpRequest) {
+                System.out.println("before request " + httpRequest.getUrl() + " at " + httpRequest.getTimestamp().toString());
             }
 
             @Override
-            public void afterResponse(HttpResponse<?> httpResponse, HttpRequest httpRequest, Instant instant) {
-                System.out.println("after response " + httpResponse.getResponseCode() + " at " + instant.toString());
+            public void afterResponse(HttpResponse<?> httpResponse, HttpRequest httpRequest) {
+                System.out.println("after response " + httpResponse.getResponseCode() + " at " + httpResponse.getTimestamp().toString());
             }
 
             @Override
-            public void afterFileUploadResponse(HttpResponse<?> httpResponse, HttpRequest httpRequest, Instant instant) {
+            public void afterFileUploadResponse(HttpResponse<?> httpResponse, HttpRequest httpRequest) {
 
             }
 
