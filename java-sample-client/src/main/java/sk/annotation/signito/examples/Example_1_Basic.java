@@ -42,6 +42,11 @@ public class Example_1_Basic {
                 SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true,
                         "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum"));
 
+
+        // this document will become inaccessible to signers, only to user who created this document
+        // it will become "private" in 10 days
+        groupBuilder.setPrivateAfterDays(10);
+
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();
 

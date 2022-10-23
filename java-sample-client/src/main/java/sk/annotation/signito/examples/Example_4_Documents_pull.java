@@ -35,7 +35,7 @@ public class Example_4_Documents_pull {
 
 
         DocumentGroupFilterDTO filterDTO = new DocumentGroupFilterDTO();
-        filterDTO.setStatus(List.of(DocumentStatusEnum.DONE));
+        filterDTO.setStatus(List.of(DocumentStatusEnum.DONE, DocumentStatusEnum.FAILED_TIMEOUT));
         filterDTO.setLastModifiedFrom(ZonedDateTime.from(lastChecked));
 
         ResponseRowsDTO<DocumentGroupFilterDTO, DocumentGroupListDTO> result = signitoClient.searchDocumentGroups(filterDTO);

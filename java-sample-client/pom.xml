@@ -19,7 +19,7 @@
             <groupId>sk.annotation.projects.signito</groupId>
             <artifactId>signito-client</artifactId>
             <classifier>minimal</classifier>
-            <version>0.9.18</version>
+            <version>0.9.31</version>
         </dependency>
 
         <dependency>

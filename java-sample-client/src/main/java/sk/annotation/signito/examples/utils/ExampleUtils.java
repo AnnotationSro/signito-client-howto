@@ -22,9 +22,11 @@ public class ExampleUtils {
         String url = "http://localhost:4208";
         String user = "test@signito.sk";
         String pass = "test";
+        if (httpCallbacks == null){
+            return new SignitoClient(url, user, pass);
+        }
         return new SignitoClient(url, user, pass, httpCallbacks);
     }
-
     public static SignitoClient createSignitoClient() {
         return createSignitoClient(null);
     }

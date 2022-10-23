@@ -56,7 +56,6 @@ public class Example_4_Notifications_webhook {
         // ------------- setup notification web-hook------------
         DocumentNotifyDestinationsDTO notif = groupBuilder.getNotificationConfigSigned();
         notif.setCreatorByEmail(true);//notify document group creator
-        notif.setCustomEmails(Map.of("custom-email@daco.sk", "My Custom Destination")); //notify custom email addresses
         notif.setCustomLink(List.of(
                 //performs HTTP GET request to http://127.0.0.1:8192/
                 NotifyCustomLinkDTO.createGet("http://127.0.0.1:8192/"),
