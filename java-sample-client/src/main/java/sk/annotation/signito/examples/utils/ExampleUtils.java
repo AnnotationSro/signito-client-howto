@@ -7,6 +7,7 @@ import sk.annotation.projects.signito.client.ids.SignerId;
 import sk.annotation.projects.signito.client.ids.UploadedDocumentId;
 import sk.annotation.projects.signito.data.dto.documents.DocumentFieldConfigDTO;
 import sk.annotation.projects.signito.data.dto.signing.SignerDTOBuilder;
+import sk.annotation.projects.signito.data.enums.Configuration2FA;
 import sk.annotation.projects.signito.data.enums.DocumentAttachmentConfigEnum;
 import sk.annotation.projects.signito.data.enums.DocumentFieldTypeEnum;
 import sk.annotation.projects.signito.utils.HttpCallbacks;
@@ -41,6 +42,7 @@ public class ExampleUtils {
                         .withNotifyByEmail(false)
                         .withNotifyBySms(false)
                         .withSendFinalEmail(false)
+                        .withConfig2FA(Configuration2FA.ENABLED_MAIL) // to access document to sign, email with access code will be sent; default value is ENABLED_SMS
                         .build()
         );
 
