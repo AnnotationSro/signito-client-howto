@@ -10,6 +10,10 @@ import sk.annotation.projects.signito.data.dto.signing.SignFieldConfigDTO;
 import sk.annotation.projects.signito.data.enums.FieldRequiredValueType;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -37,15 +41,13 @@ public class Example_1_Basic {
         UploadedDocumentId doc = ExampleUtils.addDocumentWith1signature1text(groupBuilder, "signature_1", "custom_text_1");
 
         //configure signatures
-        SignerGroupId signersGroup = groupBuilder.addSignerGroup(null, null);
+        SignerGroupId signersGroup = groupBuilder.addSignerGroup(
+                ZonedDateTime.of(LocalDateTime.now().plusDays(1), ZoneId.of("Europe/Bratislava")), //this signature will become expired after 1 day
+                null);
+
         groupBuilder.addSignerRule(signersGroup, doc, signer1, SignFieldConfigDTO.createSignature("signature_1", true),
                 SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true,
                         "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum"));
-
-
-        // this document will become inaccessible to signers, only to user who created this document
-        // it will become "private" in 10 days
-        groupBuilder.setPrivateAfterDays(10);
 
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();
