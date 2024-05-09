@@ -4,9 +4,15 @@ import sk.annotation.projects.signito.client.SignitoClient;
 import sk.annotation.projects.signito.data.dto.documents.group.DocumentGroupDetailDTO;
 import sk.annotation.projects.signito.data.enums.DocumentItemTypeEnum;
 import sk.annotation.projects.signito.data.enums.DocumentStatusEnum;
+import sk.annotation.projects.signito.utils.HttpCallbacks;
+import sk.annotation.projects.signito.web.HttpRequest;
+import sk.annotation.projects.signito.web.HttpResponse;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.time.Instant;
+import java.util.Map;
 import java.util.Objects;
 
 /**

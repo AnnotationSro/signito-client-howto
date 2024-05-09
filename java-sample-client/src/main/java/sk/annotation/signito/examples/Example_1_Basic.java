@@ -10,10 +10,7 @@ import sk.annotation.projects.signito.data.dto.signing.SignFieldConfigDTO;
 import sk.annotation.projects.signito.data.enums.FieldRequiredValueType;
 import sk.annotation.signito.examples.utils.ExampleUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -48,6 +45,8 @@ public class Example_1_Basic {
         groupBuilder.addSignerRule(signersGroup, doc, signer1, SignFieldConfigDTO.createSignature("signature_1", true),
                 SignFieldConfigDTO.create(FieldRequiredValueType.SIGNATURE_TIME, "custom_text_1", true,
                         "'Podpisane' yyyy.MM.dd 'o' HH:mm:ss").withFieldLabel("Ja som datum"));
+
+        groupBuilder.setExtId("jaSomExtId"); // you can set some arbitrary identifier (e.g. ID in your own system) that can be later used to search document by
 
         //create document draft
         DocumentGroupDetailDTO detailDTO = groupBuilder.send();

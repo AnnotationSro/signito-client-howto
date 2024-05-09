@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * download signed documents together with signature protocol
@@ -28,6 +29,13 @@ public class Example_6_HttpCallbacks {
 
     public Example_6_HttpCallbacks() {
         HttpCallbacks httpCallbacks = new HttpCallbacks() {
+            @Override
+            public void prepareHeaders(Map<String, String> reqHeaders) {
+                //do something if necessary
+                //hook function called before request is sent
+                System.out.println();
+            }
+
             @Override
             public void beforeRequest(HttpRequest req) {
                 System.out.println("before request " + req.getRequestMethod() + ": "+ req.getUrl() + " at " + req.getTimestamp() + ", body: " + req.getPostBody());
