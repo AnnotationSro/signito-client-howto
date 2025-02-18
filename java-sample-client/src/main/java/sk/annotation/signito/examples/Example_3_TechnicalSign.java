@@ -75,7 +75,6 @@ public class Example_3_TechnicalSign {
             ruleGroup.getRules().stream()
                     .filter(r -> Objects.equals(r.getSignerId(), signerTechnical.getSignerId()))
                     .forEach(rule -> {
-
                         SigningProcessResultDTO r = signitoClient.signManually(detailDTO.getDocGroupId(), rule, null);
                         if (Boolean.FALSE.equals(r.getSuccess())) {
                             throw new RuntimeException("technical signing error: " + r.getError().getMessage());

@@ -136,14 +136,14 @@ public class ExampleUtils {
             File faksFile = new File(ExampleUtils.class.getResource("/signatures/fascimile.png").toURI());
             InputStream is = new FileInputStream(faksFile);
 
-            //create unique key - it chan be file hash, UUID or something like this:
-            String key = "fascimile_" + faksFile.getAbsolutePath().replaceAll("[^a-zA-Z0-9_-]+", "");
-            try {
+            //create unique key - it chan be file hash, UUID or something like this (max 50 characters long):
+            String key = ("fascimile_" + faksFile.getAbsolutePath().replaceAll("[^a-zA-Z0-9_-]+", "")).substring(0, 50);
+          /*  try {
                 int v = is.available();
                 if (v > 0) key += v;
             } catch (IOException e) {
                 // ignore
-            }
+            }*/
 
             // if fascimile under this key does not exist - create it
             SignitoSignatureTemplateBuilder signitoSignatureTemplateBuilder = signitoClient.signatureTemplateBuilderByUserKey(key);
